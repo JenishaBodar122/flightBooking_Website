@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+	<link href="css/style.css" type="text/css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+	<header class="header py-3">
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+			<div class="logo">FlightBooking</div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="flights.html">Flights</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="destination.html">Destinations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="footer.html">Contact us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-warning" href="searchflight.html">Search Flights</a>
+                        </li>
+						<li>
+							<form class="form-inline" action="register.html">
+								<button class="btn btn-light" type="submit">Register/Login</button>
+							</form>
+						</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+	<!--search flights-->
+	<section class="main text-dark">
+        <div class="main-content">
+            <h1>Find Your Perfect Flight</h1>
+            <p>Discover amazing destinations and book your next adventure with ease.</p>
+            <form action="#" class="main-search-form">
+                <label for="from">From:</label>
+				<select>
+					<option value="NYC">New York</option>
+					<option value="CHI">Chicago</option>
+					<option value="PAR">Paris</option>
+					<option value="BKK">Bangkok</option>
+					<option value="SIN">Singaore</option>
+					<option value="TOK">Tokyo</option>
+					<option value="MAD">Madrid</option>
+					<option value="ILY">Italy</option>
+				</select>
+                <label for="to">To:</label>
+				<select>
+					<option value="LAX">Los Angeles</option>
+					<option value="MIA">Miami</option>
+					<option value="LON">London</option>
+					<option value="MAL">Malaysia</option>
+					<option value="DXB">Dubai</option>
+					<option value="SYD">Sydney</option>
+					<option value="LIS">Lisbon</option>
+					<option value="IST">Istanbul</option>
+				</select>
+                <input type="date" placeholder="Departure Date" style="margin-left:40px;">
+                <input type="date" placeholder="Return Date">
+                <select name="passengers" id="passengers">
+                    <option value="1">1 Passenger</option>
+                    <option value="2">2 Passengers</option>
+                    <option value="3">3 Passengers</option>
+                </select>
+                <button type="submit" class="btn">Search Flights</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

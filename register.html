@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header class="header py-3">
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+                <div class="logo">FlightBooking</div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="flights.html">Flights</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="destination.html">Destinations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="footer.html">Contact us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-warning" href="searchflight.html">Search Flights</a>
+                        </li>
+                        <li>
+                            <form class="form-inline" action="register.html">
+                                <button class="btn btn-light" type="submit">Register/Login</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="Register-details" style="background-color:white;">
+        <div class="container registration-container">
+            <h2 class="text-center mb-4">Register Now</h2>
+            <form action="RegisterServlet" method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="unm">Username</label>
+                    <input type="text" class="form-control mb-3" id="unm" name="username" placeholder="Enter your username" required>
+                    <span class="error" id="unmError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="eml">Email</label>
+                    <input type="email" class="form-control mb-3" id="eml" name="email" placeholder="Enter your email" required>
+                    <span class="error" id="emlError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="pswd">Password</label>
+                    <input type="password" class="form-control mb-3" id="pswd" name="password" placeholder="Password" required>
+                    <span class="error" id="pswdError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cpswd">Confirm Password</label>
+                    <input type="password" class="form-control mb-3" id="cpswd" name="confirmPassword" placeholder="Confirm Password" required>
+                    <span class="error" id="cpswdError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="pnm">Phone Number</label>
+                    <input type="tel" class="form-control mb-3" id="pnm" name="phone" placeholder="Enter your phone number" required>
+                    <span class="error" id="pnmError"></span>
+                </div>
+                <div class="d-grid gap-2 col-12 mt-5 mb-4">
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </div>
+                <div class="text-center mt-3">
+                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function validateForm() {
+            let valid = true;
+            const errorMessages = ["unmError", "emlError", "pswdError", "cpswdError", "pnmError"];
+            errorMessages.forEach(id => document.getElementById(id).textContent = "");
+            let username = document.getElementById("unm").value.trim();
+            let email = document.getElementById("eml").value.trim();
+            let password = document.getElementById("pswd").value;
+            let confirmPassword = document.getElementById("cpswd").value;
+            let phone = document.getElementById("pnm").value.trim();
+            let namePattern = /^[A-Za-z0-9]+$/;
+            if (username === "") {
+                document.getElementById("unmError").textContent = "Username is required.";
+                valid = false;
+            } else if (!namePattern.test(username)) {
+                document.getElementById("unmError").textContent = "Invalid username format.";
+                valid = false;
+            }
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (email === "") {
+                document.getElementById("emlError").textContent = "Email is required.";
+                valid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById("emlError").textContent = "Invalid email format.";
+                valid = false;
+            }
+            if (password === "") {
+                document.getElementById("pswdError").textContent = "Password is required.";
+                valid = false;
+            } else if (password.length < 6) {
+                document.getElementById("pswdError").textContent = "Password must be at least 6 characters.";
+                valid = false;
+            }
+            if (confirmPassword === "") {
+                document.getElementById("cpswdError").textContent = "Confirm password is required.";
+                valid = false;
+            } else if (confirmPassword !== password) {
+                document.getElementById("cpswdError").textContent = "Passwords do not match.";
+                valid = false;
+            }
+            if (phone === "") {
+                document.getElementById("pnmError").textContent = "Phone number is required.";
+                valid = false;
+            } else if (!/^\d{10}$/.test(phone)) {
+                document.getElementById("pnmError").textContent = "Phone number must be 10 digits.";
+                valid = false;
+            }
+            return valid;
+        }
+    </script>
+</body>
+</html>
