@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="header py-3">
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+                <div class="logo">FlightBooking</div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="flights.html">Flights</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="destination.html">Destinations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="footer.html">Contact us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-warning" href="searchflight.html">Search Flights</a>
+                        </li>
+                        <li>
+                            <form class="form-inline" action="register.html">
+                                <button class="btn btn-light" type="submit">Register/Login</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="booking-details" style="background-color:white;">
+        <div class="container g-5" style="background-color:#848884;">
+            <h2 class="text-center mb-5 mt-3" style="font-weight:bold;">Booking Details</h2>
+            <form class="row g-4" action="index.html" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <div class="col-md-6">
+                    <label for="fnm" class="form-label mt-3">First name</label>
+                    <input type="text" class="form-control mb-3" id="firstName" placeholder="Enter First Name" required>
+                    <span class="error" id="nameError"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="lnm" class="form-label mt-3">Last name</label>
+                    <input type="text" class="form-control mb-3" id="lastName" placeholder="Enter Last Name" required>
+                    <span class="error" id="lastNameError"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="phoneno" class="form-label mt-3">Phone Number</label>
+                    <input type="tel" class="form-control mb-3" id="phone" placeholder="Enter Phone Number" required>
+                    <span class="error" id="phoneError"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label mt-3">E-mail</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control mb-3" id="email" placeholder="Enter E-mail" required>
+                        <span class="error" id="emailError"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="pin" class="form-label mt-3">Payment Information</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control mb-3" id="pin" placeholder="Credit Number" required>
+                        <span class="error" id="pinError"></span>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top:40px;">
+                    <label for="from" class="form-label mb-2">From:</label><br>
+                    <select class="form-select">
+                        <option value="NYC">New York</option>
+                        <option value="CHI">Chicago</option>
+                        <option value="PAR">Paris</option>
+                        <option value="BKK">Bangkok</option>
+                        <option value="SIN">Singapore</option>
+                        <option value="TOK">Tokyo</option>
+                        <option value="MAD">Madrid</option>
+                        <option value="ILY">Italy</option>
+                    </select>
+                </div>
+                <div class="col-md-4" style="margin-top:40px;">
+                    <label for="to" class="form-label mb-2">To:</label><br>
+                    <select class="form-select">
+                        <option value="LAX">Los Angeles</option>
+                        <option value="MIA">Miami</option>
+                        <option value="LON">London</option>
+                        <option value="MAL">Malaysia</option>
+                        <option value="DXB">Dubai</option>
+                        <option value="SYD">Sydney</option>
+                        <option value="LIS">Lisbon</option>
+                        <option value="IST">Istanbul</option>
+                    </select>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary mt-2 mb-2" type="submit" style="margin-left:0px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function validateForm() {
+            let valid = true;
+            const errorMessages = ["nameError", "lastNameError", "emailError", "phoneError"];
+            errorMessages.forEach(id => document.getElementById(id).textContent = "");
+            let firstName = document.getElementById("firstName").value.trim();
+            let lastName = document.getElementById("lastName").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let namePattern = /^[A-Za-z\s]+$/;
+            if (firstName === "") {
+                document.getElementById("nameError").textContent = "First name is required.";
+                valid = false;
+            } else if (!namePattern.test(firstName)) {
+                document.getElementById("nameError").textContent = "First name cannot contain numbers or special characters.";
+                valid = false;
+            }
+            if (lastName === "") {
+                document.getElementById("lastNameError").textContent = "Last name is required.";
+                valid = false;
+            } else if (!namePattern.test(lastName)) {
+                document.getElementById("lastNameError").textContent = "Last name cannot contain numbers or special characters.";
+                valid = false;
+            }
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (email === "") {
+                document.getElementById("emailError").textContent = "Email is required.";
+                valid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById("emailError").textContent = "Invalid email format.";
+                valid = false;
+            }
+            if (phone === "") {
+                document.getElementById("phoneError").textContent = "Phone number is required.";
+                valid = false;
+            } else if (!/^\d{10}$/.test(phone)) {
+                document.getElementById("phoneError").textContent = "Phone number must be 10 digits.";
+                valid = false;
+            }
+            return valid;
+        }
+    </script>
+</body>
+</html>
